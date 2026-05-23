@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step {{ step_number }} — Maxima &amp; Minima Tutor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Code+Pro:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="brand">
+            <div class="brand-icon">∂</div>
+            <span class="brand-text">Maxima &amp; Minima Tutor</span>
+        </div>
+
+        <!-- Progress -->
+        <div class="step-header">
+            <span class="step-badge">Step {{ step_number }} / {{ total_steps }}</span>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ ((step_number - 1) / total_steps * 100)|int }}%"></div>
+            </div>
+        </div>
+
+        <!-- Question prompt -->
+        <div class="step-box">
+            <h3>{{ step.prompt }}</h3>
+            <span class="guide">{{ step.guide }}</span>
+        </div>
+
+        <!-- Feedback messages -->
+        {% if message %}
+            {% if "Wrong" in message %}
+                <div class="feedback error">
+                    <span class="feedback-icon">✗</span>
+                    <span>{{ message }} Try again or use a hint.</span>
+                </div>
+            {% else %}
+                <div class="feedback hint">
+                    <span class="feedback-icon">💡</span>
+                    <span>{{ message }}</span>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% if revealed_answer %}
+            <div class="feedback answer">
+                <span class="feedback-icon">✓</span>
+                <div>
+                    <strong>Correct Answer:</strong>
+                    <pre>{{ revealed_answer }}</pre>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if detailed_solution %}
+            <div class="feedback solution">
+                <span class="feedback-icon">📐</span>
+                <div>
+                    <strong>Detailed Solution:</strong>
+                    <pre>{{ detailed_solution }}</pre>
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Answer form -->
+        <form method="POST">
+            <div class="input-wrap">
+                <input
+                    type="text"
+                    name="answer"
+                    placeholder="Enter your answer here…"
+                    autofocus
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="btn-row">
+                <button type="submit" name="action" value="submit" class="btn-primary">
+                    Submit ↵
+                </button>
+                <button type="submit" name="action" value="hint" class="btn-ghost">
+                    💡 Hint
+                </button>
+                <button type="submit" name="action" value="show_answer" class="btn-success">
+                    Show Answer
+                </button>
+                <button type="submit" name="action" value="show_solution" class="btn-ghost">
+                    Show Full Solution
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

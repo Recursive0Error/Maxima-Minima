@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Complete — Maxima &amp; Minima Tutor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Code+Pro:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="brand">
+            <div class="brand-icon">∂</div>
+            <span class="brand-text">Maxima &amp; Minima Tutor</span>
+        </div>
+
+        <div class="result-header">
+            <div class="result-icon">🎉</div>
+            <h1>Solution <em>Complete</em></h1>
+            <p class="subtitle" style="margin-bottom: 8px;">You worked through all 9 steps for</p>
+            <span class="function-tag">f(x,y) = {{ function }}</span>
+        </div>
+
+        <div class="summary-grid">
+            {% for step in steps %}
+            <div class="summary-item">
+                <div class="summary-num">{{ loop.index }}</div>
+                <div class="summary-content">
+                    <label>{{ step.prompt }}</label>
+                    <p>{{ step.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center;">
+            <a href="/" class="btn-restart">
+                ↩ Solve Another Function
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

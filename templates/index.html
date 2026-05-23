@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maxima & Minima Tutor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Code+Pro:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="brand">
+            <div class="brand-icon">∂</div>
+            <span class="brand-text">Maxima &amp; Minima Tutor</span>
+        </div>
+
+        <h1>Find <em>critical points</em><br>step by step.</h1>
+        <p class="subtitle">
+            Enter any two-variable function and work through partial derivatives,
+            the second derivative test, and classification — interactively.
+        </p>
+
+        <div class="info-panel">
+            <h3>Accepted Input Formats</h3>
+            <ul>
+                <li>x² + y² + 6x + 12</li>
+                <li>x^2 + y^2 + 6x + 12</li>
+                <li>3xy + x²</li>
+                <li>sin x + cos y</li>
+                <li>e^(x+y)</li>
+                <li>ln(x+y)</li>
+                <li>√(x²+y²)</li>
+                <li>(x²+y²)/(x+y)</li>
+            </ul>
+            <div class="info-meta">
+                <p><strong>Variables:</strong> x, y</p>
+                <p><strong>Functions:</strong> sin, cos, tan, ln, √, exp</p>
+            </div>
+        </div>
+
+        {% if error %}
+            <div class="error-box">⚠ {{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="input-wrap">
+                <span class="input-prefix">f(x,y) =</span>
+                <input
+                    type="text"
+                    name="function"
+                    placeholder="e.g.  x^2 + y^2 + 6x + 12"
+                    style="padding-left: 90px;"
+                    autofocus
+                    required
+                >
+            </div>
+            <button type="submit" class="btn-primary">
+                Start Solving →
+            </button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
